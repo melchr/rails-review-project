@@ -9,7 +9,17 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+   <body id = "main">
+      <div id = "container">
+         <div id = "header">
+            <h1>Music Review App</h1>
+         </div>
+         <div id = "content">
+            <%= yield %>
+         </div>
+
+         <div id = "sidebar"></div>
+         
+      </div>
+   </body>
 </html>
