@@ -9,10 +9,10 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <% if !logged_in? %>
-      <%= link_to "Sign Up", signup_path%>
+      <%= link_to "Sign Up", signup_path%> | 
       <%= link_to "Sign In", signin_path%>
     <% else %>
-    <h3>Signed in as <%= current_user %> <%= link_to "Sign Out", signout_path %></h3>
+    <h3>Signed in as <%= current_user.name %> | <%= link_to "Sign Out", signout_path %></h3>
     <% end %>
   </head>
 
