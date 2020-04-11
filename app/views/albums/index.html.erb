@@ -1,4 +1,13 @@
 <h2>All Albums</h2>
-<br>
-<br>
+<% @albums.each do |album| %>
+  <br>
+  <br>
+  <% if album.avatar&.attached? %>
+    <image src="<%=(url_for(album.avatar))%>%" style="width:350px;height:350px;">
+  <% end %>
+  <br>
+  <%= album.artist %> - <%= album.title %>
+  <%= link_to "Edit Album", edit_album_path(album) %><br><br>
+  <br>
+<% end %>
 <%= link_to "Upload a New Album", new_album_path %>
