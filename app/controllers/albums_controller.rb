@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+    before_action :set_album, only: [:show, :edit, :update]
 
     def index
         @albums = Album.all
@@ -6,7 +7,6 @@ class AlbumsController < ApplicationController
     end
 
     def show
-        @album = Album.find(params[:id])
     end
 
     def new
@@ -22,7 +22,22 @@ class AlbumsController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        if @album.update(album_params)
+            redirect_to album_path(@album), notice: "Your album has been updated."
+        else
+            render 'edit'
+        end
+    end
+
     private
+
+    def set_album
+        @album = Album.find(params[:id])
+    end
 
     def album_params
         params.require(:album).permit(:artist, :title, :avatar)
