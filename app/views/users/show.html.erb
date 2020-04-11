@@ -1,6 +1,9 @@
-<h1>Logged in as <%= @user.name %>!</h1><br>
-
-
 <p>Here is a list of Reviews you wrote:</p>
+<% @users.each do |user| %>
+    <% user.reviews.each do |reviews| %>
+        <%= reviews.title %>
+        <%= reviews.content %>
+    <% end %>
+<% end %>
 <br>
 <%= link_to "All Albums", albums_path %>
