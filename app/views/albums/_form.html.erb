@@ -1,9 +1,12 @@
 <%= form_for(@album) do |f| %> 
-  <%= f.label :artist %>
-  <%= f.text_field :artist %>
-        <br><br>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-        <br><br>
-  <%= f.submit %>
+      <%= f.label :artist %>
+      <%= f.text_field :artist %>
+            <br><br>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+            <br><br>
+      <%= f.label "Album Image:" %><br>
+      <%= f.file_field :avatar %>
+            <br><br>
+      <%= f.submit %>
 <% end %>
