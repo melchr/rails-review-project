@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        
+        @users = User.includes(:reviews).all
     end
 
     def new
