@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   get '/signout' => 'sessions#destroy'
 
   resources :albums do
-    resources :reviews
+    resources :reviews, except: [:index]
   end
   resources :users
+  resources :reviews, only: [:index]
 
   root to: "albums#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
