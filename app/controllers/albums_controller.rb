@@ -7,6 +7,7 @@ class AlbumsController < ApplicationController
     end
 
     def show
+        @review = @album.reviews.build
     end
 
     def new
