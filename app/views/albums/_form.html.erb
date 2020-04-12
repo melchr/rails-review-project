@@ -8,7 +8,8 @@
       <%= f.label "Album Image:" %><br>
       <%= f.file_field :avatar %>
             <br><br>
-            <%= f.fields_for :reviews do |ff| %>
+            <h2>Write your review of the album</h2>
+            <%= f.fields_for :review do |ff| %>
             <%= ff.label :title %>
             <%= ff.text_field :title %>
             <br>
