@@ -6,6 +6,14 @@
 <%= @album.title %>
 <br>
 <%= link_to "Edit Album", edit_album_path %>
+<br><br><br>
+
+<%= render '/reviews/form' if logged_in? %>
+    <h3>Album Reviews</h3>
+<% @album.reviews.each do |review| %>
+        <%= @review.title %>
+        <%= @review.content %>
+<% end %>
 
 <br><br><br>
 <%= link_to "All Albums", albums_path %><br>
