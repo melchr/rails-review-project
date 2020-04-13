@@ -8,8 +8,9 @@
   <br>
   <%= album.artist %> - <%= album.title %>
   <br>
-  <%= link_to "View Album", album_path(album) %>
-  <%= link_to "Edit Album", edit_album_path(album) %><br><br>
+  <%= link_to "View Album", album_path(album), :class => "btn btn-primary btn-sm" %>
+  <%= link_to "Edit Album", edit_album_path(album), :class => "btn btn-primary btn-sm" %>
+  <br><br>
   <br>
 <% end %>
-<%= link_to "Upload a New Album", new_album_path %>
+<%= link_to "Upload a New Album", new_album_path, :class => "btn btn-primary btn-sm" %>

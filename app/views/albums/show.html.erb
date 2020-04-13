@@ -5,16 +5,21 @@
 <%= @album.artist %> -
 <%= @album.title %>
 <br>
-<%= link_to "Edit Album", edit_album_path %>
+<%= link_to "Edit Album", edit_album_path(@album), :class => "btn btn-primary btn-sm" %>
+<%= link_to 'Delete Album', album_path(@album), method: :delete, :class => "btn btn-primary btn-sm" %>
 <br><br><br>
-
-<%= render '/reviews/form' if logged_in? %>
-    <h3>Album Reviews</h3>
+Write a Review for <%= @album.title %> by <%= @album.artist %> here:
+<%= render '/reviews/edit' if logged_in? %>
+<br><br><br>
+Album Reviews
 <% @album.reviews.each do |review| %>
-        <%= @review.title %>
-        <%= @review.content %>
+    <%= review.date %>
+    <%= review.title %>
+    <%= review.content %>
+    <!-- by <%= current_user.name %> need to change this to that reviews user -->
 <% end %>
 
-<br><br><br>
-<%= link_to "All Albums", albums_path %><br>
-<%= link_to "Upload a New Album", new_album_path %>
+<br><br><br><br><br><br>
+<%= link_to "View All Reviews", reviews_path, :class => "btn btn-primary btn-sm" %><br>
+<%= link_to "All Albums", albums_path, :class => "btn btn-primary btn-sm" %><br>
+<%= link_to "Upload a New Album", new_album_path, :class => "btn btn-primary btn-sm" %>
