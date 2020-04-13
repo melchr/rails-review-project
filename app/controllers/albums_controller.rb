@@ -1,9 +1,8 @@
 class AlbumsController < ApplicationController
-    before_action :set_album, only: [:show, :edit, :update]
+    before_action :set_album, only: [:show, :edit, :update, :destroy]
 
     def index
         @albums = Album.all
-        @current_user
     end
 
     def show
@@ -15,7 +14,9 @@ class AlbumsController < ApplicationController
     end
 
     def create
-        @album = Album.new(album_params)
+        @user = User.find(params[:user_id])
+        @album = current_user.albums.build(album_params)
+        @album.user_id = current_user.id
         if @album.save
             redirect_to album_path(@album)
         else
@@ -27,11 +28,18 @@ class AlbumsController < ApplicationController
     end
 
     def update
+        #@album = current_user.albums.build(album_params)
+        @album.user_id = current_user.id
         if @album.update(album_params)
             redirect_to album_path(@album), notice: "Your album has been updated."
         else
             render 'edit'
         end
+    end
+
+    def destroy
+        @album.delete
+        redirect_to albums_path
     end
 
     private
@@ -41,6 +49,6 @@ class AlbumsController < ApplicationController
     end
 
     def album_params
-        params.require(:album).permit(:artist, :title, :avatar)
+        params.require(:album).permit(:artist, :title, :avatar)#, :user_id, review_attributes:[:title, :date, :content, :user_id, :album_id])
     end
 end
