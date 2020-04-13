@@ -3,12 +3,13 @@
 <br>
       <%= f.label :title %>
       <%= f.text_field :title%>
-            <br><br>
+            <br>
       <%= f.label :date %>
       <%= f.datetime_field :date%>
-            <br><br>
+            <br>
       <%= f.label :content %>
       <%= f.text_area :content %>
-            <br><br>
+      <%= f.hidden_field :user_id%>
+            <br>
       <%= f.submit "Submit" %>
 <% end %>
