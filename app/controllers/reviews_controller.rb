@@ -15,6 +15,8 @@ class ReviewsController < ApplicationController
 
     def create
         @review = current_user.reviews.build(review_params)
+        @album = Album.find(params[:album_id])
+        @review.album = @album
         if @review.save
             redirect_to reviews_path
         else
@@ -23,13 +25,17 @@ class ReviewsController < ApplicationController
     end
 
     def update
-
+        if @album.review.update(review_params)
+            redirect_to album_path(@album), notice: "Your review has been updated."
+        else
+            render 'edit'
+        end
     end
 
     private
 
     def review_params
-        params.require(:review).permit(:title, :date, :content, :user_id, :album_id, album_attributes:[:artist, :title])
+        params.require(:review).permit(:title, :date, :content)#, :user_id, :album_id, album_attributes:[:artist, :title, :user_id])
     end
 
 end
