@@ -1,0 +1,15 @@
+<%= form_for :review, method: "PATCH",:url => { :action => :update } do |f| %> 
+<!-- <%= f.collection_select :album_id, Album.order(:artist),:id,:artist %> -->
+<br>
+      <%= f.label :title %>
+      <%= f.text_field :title%>
+            <br>
+      <%= f.label :date %>
+      <%= f.datetime_field :date%>
+            <br>
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+      <%= f.hidden_field :user_id%>
+            <br>
+      <%= f.submit "Submit" %>
+<% end %>
