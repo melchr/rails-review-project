@@ -14,7 +14,7 @@ class AlbumsController < ApplicationController
     end
 
     def create
-        @user = User.find(params[:user_id])
+        @user = User.find(current_user.id)
         @album = current_user.albums.build(album_params)
         @album.user_id = current_user.id
         if @album.save
