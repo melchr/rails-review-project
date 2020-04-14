@@ -9,7 +9,7 @@
 <%= link_to 'Delete Album', album_path(@album), method: :delete, :class => "btn btn-primary btn-sm" %>
 <br><br><br>
 Write a Review for <%= @album.title %> by <%= @album.artist %> here:
-<%= render '/reviews/edit' if logged_in? %>
+<%= render '/reviews/form' if logged_in? %>
 <br><br><br>
 Album Reviews
 <% @album.reviews.each do |review| %>

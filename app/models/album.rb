@@ -3,4 +3,5 @@ class Album < ApplicationRecord
     has_many :reviews
     has_many :users, through: :reviews
     has_one_attached :avatar
+    accepts_nested_attributes_for :reviews
 end
