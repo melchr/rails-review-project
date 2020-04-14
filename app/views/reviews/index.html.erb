@@ -1,5 +1,5 @@
 <% @reviews.each do |review| %>
-  <br><%= review.title %>
+  <br><%= link_to review.title %>
   <br><%= review.content %>
   <br>
 <% end %>
