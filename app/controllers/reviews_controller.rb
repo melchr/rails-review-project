@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
         @album = Album.find(params[:album_id])
         @review.album = @album
         if @review.save
-            redirect_to reviews_path
+            redirect_to album_path(@album)
         else
             render :new
         end

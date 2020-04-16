@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     end
 
     def show
-        @users = User.includes(:reviews).all
+        @user = current_user
+        @reviews = @user.reviews
     end
 
     def new
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_path(@user)
+            redirect_to albums_path
         else
             render :new
         end

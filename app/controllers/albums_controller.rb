@@ -3,10 +3,13 @@ class AlbumsController < ApplicationController
 
     def index
         @albums = Album.all
+        @user = current_user
     end
 
     def show
         @review = @album.reviews.build
+        #@review.user = current_user
+        @user = current_user
     end
 
     def new
@@ -25,6 +28,7 @@ class AlbumsController < ApplicationController
     end
 
     def edit
+        @user = current_user
     end
 
     def update
