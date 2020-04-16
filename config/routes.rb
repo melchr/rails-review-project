@@ -5,11 +5,12 @@ Rails.application.routes.draw do
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/signout' => 'sessions#destroy'
+  post '/logout', to: "sessions#destroy"
 
   resources :albums do
     resources :reviews, except: [:index]
   end
-  resources :users
+  resources :users, only: [:show, :destroy]
   resources :reviews, only: [:index]
 
   root to: "albums#index"

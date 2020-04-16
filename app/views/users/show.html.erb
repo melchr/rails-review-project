@@ -1,9 +1,11 @@
+<% if @user.reviews == !nil? %>
 <p>Here is a list of Reviews you wrote:</p>
-<% @users.each do |user| %>
-    <% user.reviews.each do |reviews| %>
-        <%= reviews.title %>
-        <%= reviews.content %>
-    <% end %>
+<% @reviews.each do |review| %>
+        <%= review.title %>
+        <%= review.content %>
 <% end %>
+<% else %>
 <br>
-<%= link_to "All Albums", albums_path %>
+<p>No reviews yet!</p>
+<p>Choose from the list of albums to review <%= link_to "here!", albums_path %></p>
+<% end %>
