@@ -1,17 +1,9 @@
-<nav class="navbar navbar-dark navbar-static-top navbar-expand-md">
-    <div class="container">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>
-        </button> <h3>Signed in as <%= current_user.name %></h3>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav mr-auto">
-            <% if !logged_in? %>
-            <li class='nav-item'><%= link_to "Sign Up", signup_path, class: 'nav-link' %></li>
-            <li class='nav-item'><%= link_to "Sign In", signin_path, class: 'nav-link' %></li>  
-            <% else %>
-            <li class='nav-item'><%= link_to "Sign Out", signout_path, class: 'nav-link' %></li>
-            <% end %>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<% if !logged_in? %>
+<%= link_to "Sign Up", signup_path %>
+<%= link_to "Sign In", signin_path %>  
+<% else %>
+Logged in as <%= @current_user.name %> | 
+<%= link_to "Sign Out", signout_path %>
+<% end %>
+<br>
+<br><br>
