@@ -1,10 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
-    validates_presence_of :password, :on => :create
-    validates_format_of :name, :with => /[A-Za-z]+/, :on => :create
-    validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
-    validates_length_of :password, :minimum => 5, :on => :create
+    validates :email, uniqueness: true, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+    #validates :password, uniqueness: true, length: {in: 3..20}, presence: true
     has_many :reviews
-    has_many :albums, through: :reviews  #<<< understand this
-    accepts_nested_attributes_for :reviews
+    has_many :albums, through: :reviews
 end
