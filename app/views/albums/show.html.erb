@@ -12,17 +12,12 @@ Write a Review for <%= @album.title %> by <%= @album.artist %> here:
 <%= render '/reviews/form' if logged_in? %>
 <br><br><br>
 <h2>Reviews for this album:</h2><br>
-<% if @user.reviews == !nil? %>
 <% @album.reviews.each do |review| %>
     <small>Date written: <%= review.date %></small><br>
     <small>Written by: <%= review.user.name %></small><br>
     <strong>Title: <%= review.title %></strong><br>
     Review: <%= review.content %><br><br>
     <!-- by <%= current_user.name %> need to change this to that reviews user -->
-<% end %>
-<% end %>
+    <% end %>
 
-<br><br><br><br><br><br>
-<%= link_to "View All Reviews", reviews_path %><br>
-<%= link_to "All Albums", albums_path %><br>
-<%= link_to "Upload a New Album", new_album_path %>
+<br><br>

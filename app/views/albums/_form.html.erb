@@ -1,4 +1,11 @@
 <%= form_for(@album) do |f| %> 
+<% if @album.errors.any? %>
+<ul>
+  <% @album.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
       <%= f.label :artist %>
       <%= f.text_field :artist %>
             <br><br>
@@ -23,4 +30,4 @@
       <%= f.submit %>
 <% end %>
 <br><br><br>
-<%= link_to "Back to Album", album_path(@album) %>
+<%= link_to "Back to Album", albums_path(@album) %>
