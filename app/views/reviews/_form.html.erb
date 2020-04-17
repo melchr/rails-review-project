@@ -1,15 +1,20 @@
 <%= form_for :review, url: album_reviews_path(@album.id), :method => :post do |f| %> 
+<% if @review.errors.any? %>
+<ul>
+  <% @review.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
 <!-- <%= f.collection_select :album_id, Album.order(:artist),:id,:artist %> -->
-<br>
       <%= f.label :title %>
       <%= f.text_field :title%>
             <br>
       <%= f.label :date %>
-      <%= f.datetime_field :date%>
+      <%= f.date_field :date%>
             <br>
       <%= f.label :content %>
       <%= f.text_area :content %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :album_id, value: @album.id %>
             <br>
       <%= f.submit "Submit" %>
