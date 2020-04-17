@@ -8,12 +8,13 @@ class AlbumsController < ApplicationController
 
     def show
         @review = @album.reviews.build
-        #@review.user = current_user
-        @user = current_user
+        @review.user = current_user
+        @reviews = Review.recent #scope
     end
 
     def new
         @album = Album.new
+        @user = current_user
     end
 
     def create
