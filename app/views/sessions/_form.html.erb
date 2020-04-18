@@ -1,5 +1,5 @@
-<% unless @message.nil? %>
-  <%= @message %>
+<% unless flash[:alert].nil? %>
+  <p><strong><%= flash[:alert] %></strong></p>
 <% end %>
 <%= form_tag '/signin' do %>
 <% if @user.errors.any? %>
