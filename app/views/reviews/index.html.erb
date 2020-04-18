@@ -11,11 +11,13 @@
   <%= link_to "Edit Album", edit_album_path(album) %>
   <br><br>
   <% album.reviews.each do |review| %>
-  <br><strong>Title: <%= link_to review.title %></strong>
-  <br>Written by: <%= review.user.name %>
-  <br>Date: <%= review.date %>
-  <br>Content: <%= review.content %>
-  <br>
-  <% end %>
+    <% unless review.id.nil? %>
+        <small>Date written: <%= review.date %></small><br>
+        <small>Written by: <%= review.user.name %></small><br>
+        <strong>Title: <%= review.title %></strong><br>
+        Review: <%= review.content %><br>
+        <%= link_to "Edit Review", edit_album_review_path(album_id: album.id, id: review.id) %><br><br>
+    <% end %>
+<% end %>
   <br>
 <% end %>
