@@ -1,8 +1,10 @@
 class ReviewsController < ApplicationController
     before_action :set_review, only: [:show, :edit, :update, :destroy]
+    before_action :set_current_user, only: [:index, :new, :edit]
+    before_action :find_album, only: [:create, :edit]
+    before_action :must_login, only: [:index, :new, :create, :edit, :update, :destroy]
 
     def index
-        @user = current_user
         @albums = Album.with_recent_reviews
     end
 
@@ -11,18 +13,20 @@ class ReviewsController < ApplicationController
     end
 
     def new
-        @review = Review.new
-        @user = current_user
-        @album = Album.find(params[:album_id])
+        if params[:album_id] && @album = Album.find_by(id: params[:client_id])
+            @review = @album.reviews.build
+        else
+            redirect_to albums_path
+        end
     end
 
     def create
         @review = current_user.reviews.build(review_params)
-        @album = Album.find(params[:album_id])
         @review.album = @album
         if @review.save
             redirect_to album_path(@album)
         else
+            @album = @review.album
             render :new
         end
     end
@@ -31,20 +35,30 @@ class ReviewsController < ApplicationController
     end
 
     def update
-        if @album.review.update(review_params)
-            redirect_to album_path(@album), notice: "Your review has been updated."
+        if @review.update(review_params)
+            redirect_to album_path(params[:album_id])
         else
             render 'edit'
         end
     end
 
     def destroy
+        @review.destroy
+        redirect_to albums_path
     end
 
     private
 
     def set_review
         @review = Review.find(params[:id])
+    end
+
+    def set_current_user
+        @user = current_user
+    end
+
+    def find_album
+        @album = Album.find(params[:album_id])
     end
 
     def review_params

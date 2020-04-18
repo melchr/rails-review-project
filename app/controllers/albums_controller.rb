@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
     before_action :set_album, only: [:show, :edit, :update, :destroy]
+    before_action :must_login, only: [:new, :show, :create, :edit, :update, :destroy]
 
     def index
         @albums = Album.all
@@ -9,6 +10,9 @@ class AlbumsController < ApplicationController
     def show
         @review = @album.reviews.build
         @review.user = current_user
+        # If you want to have some flag to indicate its status
+        #@review.draft = true
+        @review.save
         @reviews = Review.recent #scope
     end
 
