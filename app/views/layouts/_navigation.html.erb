@@ -1,13 +1,17 @@
-<% if !logged_in? %>
-<%= link_to "Sign Up", signup_path %>
-<%= link_to "Sign In", signin_path %>  
+<nav class="cyan darken-2">
+<div class="container">
+<ul><% if !logged_in? %>
+<li><%= link_to "Sign Up", signup_path %></li>
+<li><%= link_to "Sign In", signin_path %></li>
 <% else %>
-Logged in as <%= @current_user.name %> | 
-<%= link_to "Sign Out", signout_path %>
+<li class="brand-logo">Logged in as <%= @current_user.name %></li>
+<li class="right"><%= link_to "Sign Out", signout_path %></li>
 <% end %>
-<br>
-<br><br>
-<%= link_to "View All Reviews", reviews_path %> |
-<%= link_to "All Albums", albums_path %> |
-<%= link_to "Upload a New Album", new_album_path %>
-<br><br><br>
+</ul>
+<ul class="right">
+<li><%= link_to "View All Reviews", reviews_path %> |</li>
+<li><%= link_to "All Albums", albums_path %> |</li>
+<li><%= link_to "Upload a New Album", new_album_path %></li>
+</ul>
+</nav>
+</div>

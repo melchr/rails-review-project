@@ -5,13 +5,24 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
+   <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
   <header>
+  <nav>
     <%= render 'layouts/navigation'%>
+  </nav>
   </header>
-
+<div class="container">
 <%= yield %>
-
+</div>
+   <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
+<footer class="page-footer">
+<div class="container">
+<center>&copy; Music Reviews</center>
+</div>
+</footer>
 </html>
