@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  get '/auth/:provider/callback' => 'sessions#omniauth'
+  get 'auth/failure', to: redirect('/')
   get '/signup' => 'users#new', as: 'signup'
   post '/signup' => 'users#create'
   get '/signin' => 'sessions#new'
