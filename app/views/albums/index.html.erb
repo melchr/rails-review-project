@@ -1,15 +1,13 @@
 <h2>All Albums</h2>
 <% @albums.each do |album| %>
   <br>
-  <br>
+  <h6><%= album.artist %> - <%= album.title %></h6>
   <% if album.avatar&.attached? %>
     <image src="<%=(url_for(album.avatar))%>%" style="width:350px;height:350px;">
   <% end %>
   <br>
-  <%= album.artist %> - <%= album.title %>
-  <br>
-  <%= link_to "View Album", album_path(album) %>
-  <%= link_to "Edit Album", edit_album_path(album) %>
+  <%= link_to "View Album", album_path(album), class: "waves-effect waves-light btn" %>
+  <%= link_to "Edit Album", edit_album_path(album), class: "waves-effect waves-light btn" %>
   <br><br>
   <br>
 <% end %>
