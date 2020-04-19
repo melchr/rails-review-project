@@ -18,6 +18,7 @@ class AlbumsController < ApplicationController
 
     def new
         @album = Album.new
+        @review = @album.reviews.build
         @user = current_user
     end
 
@@ -48,6 +49,7 @@ class AlbumsController < ApplicationController
 
     def destroy
         @album.delete
+        @album.avatar.purge
         redirect_to albums_path
     end
 
