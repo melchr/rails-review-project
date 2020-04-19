@@ -16,7 +16,11 @@
         <small>Written by: <%= review.user.name %></small><br>
         <strong>Title: <%= review.title %></strong><br>
         Review: <%= review.content %><br>
-        <%= link_to "Edit Review", edit_album_review_path(album_id: album.id, id: review.id) %><br><br>
+        <% if current_user.id == review.user_id %>
+        <%= link_to "Edit Review", edit_album_review_path(album_id: album.id, id: review.id) %>
+        <%= link_to 'Delete', album_path(album_id: album.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+        <br><br>
     <% end %>
 <% end %>
   <br>
