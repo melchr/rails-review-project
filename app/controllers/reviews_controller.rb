@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
     before_action :set_review, only: [:show, :edit, :update, :destroy]
-    before_action :set_current_user, only: [:index, :new, :edit]
-    before_action :find_album, only: [:create, :edit]
+    before_action :set_current_user, only: [:index, :new, :edit, :destroy]
+    before_action :find_album, only: [:create, :edit, :update, :destroy]
     before_action :must_login, only: [:index, :new, :create, :edit, :update, :destroy]
 
     def index
@@ -43,9 +43,14 @@ class ReviewsController < ApplicationController
     end
 
     def destroy
-        @review.destroy
-        redirect_to albums_path
-    end
+        if current_user.id == @review.user_id
+          @album.reviews.find(params[:id]).destroy
+          redirect_to album_path(params[:album_id])
+        else
+           flash[:error] = "Unable to delete your review. Please try again."
+           redirect_to album_reviews_path(@review)
+        end
+      end
 
     private
 
