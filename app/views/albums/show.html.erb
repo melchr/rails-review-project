@@ -1,3 +1,5 @@
+<div class="row">
+<div class="col s6">
 <h5><strong>
 <%= @album.artist %> -
 <%= @album.title %>
@@ -15,22 +17,22 @@
 <h5>Reviews for this album:</h5>
 <% @album.reviews.each do |review| %>
     <% unless review.id.nil? %>
-        <small>Date written: <%= review.date %></small><br>
+        <strong><%= link_to review.title, album_review_path(album_id: @album.id, id: review.id) %></strong><br>
         <small>Written by: <%= review.user.name %></small><br>
-        <strong>Title: <%= review.title %></strong><br>
-        Review: <%= review.content %><br>
         <br>
         <% if current_user.id == review.user_id %>
         <%= link_to "Edit Review", edit_album_review_path(album_id: @album.id, id: review.id), class: "waves-effect waves-light btn" %>
         <%= link_to 'Delete', album_review_path(album_id: @album.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn" %><br><br>
         <% end %>
-        <br><br>
+        <br>
     <% end %>
 <% end %>
-<br><br><br>
-<hr>
-<div style="width:350px;">
+</div>
+<div class="col s6">
+<div class="card-panel hoverable">
 <strong>Write a Review for <%= @album.title %> by <%= @album.artist %> here:</strong>
 <%= render '/reviews/form' if logged_in? %>
 </div>
+</div>
 <br><br>
+</div>

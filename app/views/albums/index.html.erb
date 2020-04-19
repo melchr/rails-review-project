@@ -1,7 +1,7 @@
 <h2>All Albums</h2>
 <% @albums.each do |album| %>
   <br>
-  <h6><%= album.artist %> - <%= album.title %></h6>
+  <h6><strong><%= album.artist %> - <%= album.title %></strong></h6>
   <% if album.avatar&.attached? %>
     <image src="<%=(url_for(album.avatar))%>%" style="width:350px;height:350px;">
   <% end %>

@@ -1,25 +1,30 @@
+<h4>All Reviews:</h4>
+<small>(Written in the last 7 days)</small>
+<br>
 <% @albums.each do |album| %>
   <br>
   <br>
-  <% if album.avatar&.attached? %>
-    <image src="<%=(url_for(album.avatar))%>%" style="width:350px;height:350px;">
-  <% end %>
-  <br>
-  <%= album.artist %> - <%= album.title %>
-  <br>
-  <%= link_to "View Album", album_path(album) %>
-  <%= link_to "Edit Album", edit_album_path(album) %>
+   <div class="row">
+   <div display="flex">
+    <div class="col s9 m5">
+      <div class="card">
+      <div class="center-align">
+  Reviews for <%= link_to album.title, album_path(album) %> by <%= album.artist %>
   <br><br>
-  <% album.reviews.each do |review| %>
+  <% if album.avatar&.attached? %>
+    <image src="<%=(url_for(album.avatar))%>%" style="width:200px;height:200px;">
+  <% end %><br>
+  <br>
+  <br>
+ <% album.reviews.each do |review| %>
     <% unless review.id.nil? %>
-        <small>Date written: <%= review.date %></small><br>
-        <small>Written by: <%= review.user.name %></small><br>
-        <strong>Title: <%= review.title %></strong><br>
-        Review: <%= review.content %><br>
-        <% if current_user.id == review.user_id %>
-        <%= link_to "Edit Review", edit_album_review_path(album_id: album.id, id: review.id) %>
-        <%= link_to 'Delete', album_path(album_id: album.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        - <%= link_to review.title, album_review_path(album_id: album.id, id: review.id) %></strong>
+        <% if current_user.id == review.user_id %>  |
+        <small><%= link_to "Edit", edit_album_review_path(album_id: album.id, id: review.id) %> or 
+        <%= link_to 'Delete', album_path(album_id: album.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %></small>
         <% end %>
+        <br><br>
+        </div></div></div></div></div>
         <br><br>
     <% end %>
 <% end %>

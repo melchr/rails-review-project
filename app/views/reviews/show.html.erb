@@ -1,0 +1,34 @@
+<h6><strong>
+Showing "<%= @review.title %>" for 
+<%= @album.artist %> -
+<%= @album.title %>
+</strong></h6>
+<br>
+<% if @album.avatar.attached? %>
+    <image src="<%=(url_for(@album.avatar))%>%" style="width:350px;height:350px;">
+<% end %>
+<br>
+<br>
+<%= link_to "Edit Album", edit_album_path(@album), class: "waves-effect waves-light btn" %>
+<%= link_to 'Delete Album', album_path(@album), method: :delete, class: "waves-effect waves-light btn" %>
+<br><br>
+<hr>
+
+    <% unless @review.id.nil? %>
+        <small>Date written: <%= @review.date %></small><br>
+        <small>Written by: <%= @review.user.name %></small><br>
+        <br>
+        <strong>Title: <%= @review.title %></strong><br>
+        <%= @review.content %><br>
+        <br>
+        <% if current_user.id == @review.user_id %>
+        <%= link_to "Edit Review", edit_album_review_path(album_id: @album.id, id: @review.id), class: "waves-effect waves-light btn" %>
+        <%= link_to 'Delete', album_review_path(album_id: @album.id, id: @review.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "waves-effect waves-light btn" %><br><br>
+        <% end %>
+        <br><br>
+    <% end %>
+
+<br>
+<strong>
+<%= link_to "Write a New Review", album_path(@album), class: "waves-effect waves-light btn" %></strong>
+<br><br>
