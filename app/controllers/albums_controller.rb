@@ -10,8 +10,7 @@ class AlbumsController < ApplicationController
     def show
         @review = @album.reviews.build
         @review.user = current_user
-        # If you want to have some flag to indicate its status
-        #@review.draft = true
+
         @review.save
         @reviews = Review.recent #scope
     end
