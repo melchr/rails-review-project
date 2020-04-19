@@ -14,18 +14,18 @@
             <br><br>
       <%= f.label "Album Image:" %><br>
       <%= f.file_field :avatar %>
-       <!--     <br><br>
+           <br><br>
             <h2>Write your review of the album</h2>
-            <%= f.fields_for :review do |ff| %>
+            <%= f.fields_for :reviews do |ff| %>
             <%= ff.label :title %>
             <%= ff.text_field :title %>
             <br>
             <%= ff.label :date %>
-            <%= ff.datetime_field :date %>
+            <%= ff.date_field :date %>
             <br>
             <%= ff.label :content %>
             <%= ff.text_area :content %>
-            <% end %> -->
+            <% end %>
             <br>
       <%= f.submit %>
 <% end %>
