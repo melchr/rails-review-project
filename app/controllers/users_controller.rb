@@ -1,13 +1,20 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_current_user, only: [:index, :show, :new, :edit, :destroy]
+    #before_action :set_review, only: [:show, :edit, :update, :destroy]
+    before_action :set_user, only: [:edit, :update, :destroy]
+    #before_action :find_album, only: [:show, :create, :edit, :update, :destroy]
+    before_action :must_login, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
     def index
         @users = User.all
     end
 
     def show
-        @user = current_user
-        @reviews = @user.reviews
+        @reviews = current_user.reviews
+        @album = @user.albums
+        #@album = @user.albums
+        #@reviews = Review.all
+       # @review = @album.reviews.build
     end
 
     def new
@@ -38,9 +45,21 @@ class UsersController < ApplicationController
 
     private
 
+   # def set_review
+   #     @review = Review.find(params[:id])
+   # end
+
     def set_user
         @user = User.find(params[:id])
     end
+
+    def set_current_user
+        @user = current_user
+    end
+
+    #def find_album
+    #    @album = Album.find(params[:album_id])
+    #end
 
     def user_params
         params.require(:user).permit(:name, :email, :password, :password_confirmation)
