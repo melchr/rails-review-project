@@ -1,14 +1,15 @@
 class ReviewsController < ApplicationController
     before_action :set_review, only: [:show, :edit, :update, :destroy]
-    before_action :set_current_user, only: [:index, :new, :edit, :destroy]
-    before_action :find_album, only: [:create, :edit, :update, :destroy]
-    before_action :must_login, only: [:index, :new, :create, :edit, :update, :destroy]
+    before_action :set_current_user, only: [:index, :show, :new, :edit, :destroy]
+    before_action :find_album, only: [:show, :create, :edit, :update, :destroy]
+    before_action :must_login, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
     def index
         @albums = Album.with_recent_reviews
     end
 
     def show
+
         #@reviews = Review.where("album_id = ?", params[:album_id])
     end
 
@@ -67,7 +68,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-        params.require(:review).permit(:title, :date, :content, :user_id, :album_id, album_attributes:[:artist, :title, :user_id])
+        params.require(:review).permit(:title, :date, :content, album_attributes:[:artist, :title, :user_id])
     end
 
 end

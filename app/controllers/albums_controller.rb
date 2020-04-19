@@ -22,9 +22,10 @@ class AlbumsController < ApplicationController
     end
 
     def create
-        @user = User.find(current_user.id)
+        #@user = User.find(current_user.id)
         @album = current_user.albums.build(album_params)
-        @album.user_id = current_user.id
+        #@album.user_id = current_user.id
+        @album.reviews.each { |r| r.user ||= current_user } # I'm using ||= so i can use the same code on update without changing reviews that already have a user
         if @album.save
             redirect_to album_path(@album)
         else
@@ -59,6 +60,6 @@ class AlbumsController < ApplicationController
     end
 
     def album_params
-        params.require(:album).permit(:artist, :title, :avatar, :user_id, review_attributes:[:title, :date, :content, :user_id, :album_id])
+        params.require(:album).permit(:artist, :title, :avatar, :user_id, reviews_attributes:[:title, :date, :content]) #removed the :user_id and :album_id from the permitted parameters for reviews_attributes, don't want users to exploit that assignation adding those parameters that I'm actually not using
     end
 end
