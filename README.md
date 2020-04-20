@@ -22,3 +22,9 @@ Run $rails s to start a web server and access the app in any web browser.
 Use browser to visit the URL displayed in the terminal once your server is fully running. (http://localhost:3000)
 
 Start uploading and reviewing albums!
+
+# Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/melchr/rails-review-project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+
+# License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
