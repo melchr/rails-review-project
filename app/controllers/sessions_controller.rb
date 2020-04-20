@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    #before_action :set_current_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
     def new
         @user = User.new
     end
@@ -26,6 +27,12 @@ class SessionsController < ApplicationController
     def destroy
         session.clear
         redirect_to root_path
+    end
+
+    private
+
+    def set_current_user
+        @user = current_user
     end
 
 end

@@ -1,2 +1,21 @@
 <h1>Sign Up</h1>
-<%= render "form" %>
+<%= form_for @user, url: signup_path do |f| %>
+<% if @user.errors.any? %>
+<ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+    <div><%= f.label :name %><br />
+    <%= f.text_field :name %></div>
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email %>
+    </div>
+    <div><%= f.label "Password" %><br />
+    <%= f.password_field :password %><br>
+    <%= f.label "Confirm Password "%>
+    <%= f.password_field :password_confirmation %>
+    </div><br />
+    <%= f.submit "Sign Up" %>
+<% end %>

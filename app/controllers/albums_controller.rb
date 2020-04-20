@@ -1,4 +1,6 @@
 class AlbumsController < ApplicationController
+    #before_action :set_current_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+    helper_method :current_user
     before_action :set_album, only: [:show, :edit, :update, :destroy]
     before_action :must_login, only: [:new, :show, :create, :edit, :update, :destroy]
 
