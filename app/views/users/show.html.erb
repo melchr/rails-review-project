@@ -1,8 +1,9 @@
 
 <p>Here is a list of Reviews you wrote:</p>
 <% @reviews.each do |review| %>
-  <p><%= link_to review.title, album_path %></p>
-  <p><%= review.content %></p>
+  <%= link_to review.title, album_path %><br>
+  <%= review.content %>
+  <br><br>
 <% end %>
 
 <br>
