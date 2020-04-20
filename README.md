@@ -11,7 +11,7 @@ To run this app locally, fork and clone the GitHub repo to your local machine.
 
 Change directories (cd) into the repo directory. Run bundle install to install dependencies, and rails db:migrate to create the database.
 ```
-$cd review_project 
+$cd rails_review_project 
 $bundle install
 $rails db:migrate
 ```
