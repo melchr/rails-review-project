@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     #before_action :set_review, only: [:show, :edit, :update, :destroy]
     before_action :set_user, only: [:edit, :update, :destroy]
     #before_action :find_album, only: [:show, :create, :edit, :update, :destroy]
-    before_action :must_login, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+    before_action :must_login, only: [:index, :show, :edit, :update, :destroy]
 
     def index
         @users = User.all
