@@ -1,5 +1,7 @@
 <h2>All Albums</h2>
+
 <% @albums.each do |album| %>
+
   <br>
   <h6><strong><%= album.artist %> - <%= album.title %></strong></h6>
   <% if album.avatar&.attached? %>
@@ -10,4 +12,5 @@
   <%= link_to "Edit Album", edit_album_path(album), class: "waves-effect waves-light btn" %>
   <br><br>
   <br>
+
 <% end %>
