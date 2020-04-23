@@ -16,7 +16,4 @@ class User < ApplicationRecord
         end
       end
 
-    #def album_attributes=(album_attributes)    CHANGE TO ABLUM
-    #    self.user = User.find_or_create_by(username: user_attributes[:username]) unless user_attributes[:username].blank?
-    # end 
 end
