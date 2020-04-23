@@ -18,15 +18,14 @@
   <br>
  <% album.reviews.each do |review| %>
     <% unless review.id.nil? %>
-        - <%= link_to review.title, album_review_path(album_id: album.id, id: review.id) %></strong>
+        <%= link_to review.title, album_review_path(album_id: album.id, id: review.id) %></strong>
         <% if current_user.id == review.user_id %>  |
         <small><%= link_to "Edit", edit_album_review_path(album_id: album.id, id: review.id) %> or 
         <%= link_to 'Delete', album_path(album_id: album.id, id: review.id), method: :delete, data: { confirm: 'Are you sure?' } %></small>
         <% end %>
         <br><br>
-        </div></div></div></div></div>
-        <br><br>
     <% end %>
 <% end %>
+    </div></div></div></div></div>
   <br>
 <% end %>

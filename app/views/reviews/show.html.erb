@@ -15,7 +15,7 @@ Showing "<%= @review.title %>" for
 <hr>
 
     <% unless @review.id.nil? %>
-        <small>Date written: <%= @review.date %></small><br>
+        <small>Date written: <%= @review.date.strftime("%d %B %Y") %></small><br>
         <small>Written by: <%= @review.user.name %></small><br>
         <br>
         <strong>Title: <%= @review.title %></strong><br>
