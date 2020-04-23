@@ -5,5 +5,5 @@ class Review < ApplicationRecord
     validates :title, presence: true, uniqueness: true
     validates :date, presence: true
     accepts_nested_attributes_for :album
-    scope :recent, -> { where("date(date) >= ?", Date.today - 7.days) } #scope
+    scope :recent, -> { where("date(date) >= ?", Date.today - 7.days) } #scope for album
 end

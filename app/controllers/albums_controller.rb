@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-    before_action :set_current_user, only: [:index, :new, :edit]
+    before_action :set_current_user, only: [:new, :index, :new, :edit]
     before_action :set_album, only: [:show, :edit, :update, :destroy]
     before_action :must_login, only: [:new, :show, :create, :edit, :update, :destroy]
 
@@ -11,18 +11,19 @@ class AlbumsController < ApplicationController
     def show
         @review = @album.reviews.build
         @review.user = current_user
-        @reviews = Review.recent #scope
+        @reviews = Review.recent #scope shows recent reviews
     end
 
     def new
         @album = Album.new
         @review = @album.reviews.build
-        @user = current_user
     end
 
     def create
         @album = current_user.albums.build(album_params)
-        @album.reviews.each { |r| r.user ||= current_user } # I'm using ||= so i can use the same code on update without changing reviews that already have a user
+        @album.reviews.each { |r| r.user ||= current_user }
+        # I'm using ||= so i can use the same code on update without changing reviews that already have a user
+        #each album review is either assigned to the user that made it or the current user
         if @album.save
             redirect_to album_path(@album)
         else
@@ -56,7 +57,7 @@ class AlbumsController < ApplicationController
     end
 
     def set_album
-        @album = Album.exists?(params[:id]) ? Album.find(params[:id]) : nil
+        @album = Album.exists?(params[:id]) ? Album.find(params[:id]) : nil #if album exists, find it, else it is nil
         redirect_to not_found_path if @album.nil? 
         #render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found if @album.nil? #conditional still works at end 
     end

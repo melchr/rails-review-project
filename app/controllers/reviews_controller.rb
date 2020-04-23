@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
     end
 
     def new
-        if params[:album_id] && @album = Album.find_by(id: params[:client_id])
+        if params[:album_id] && @album = Album.find_by(id: params[:user_id])
             @review = @album.reviews.build
         else
             redirect_to albums_path
