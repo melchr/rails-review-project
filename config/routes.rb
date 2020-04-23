@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/signout' => 'sessions#destroy'
   post '/logout', to: "sessions#destroy"
 
+  get '/not_found' => 'pages#not_found'
+
   resources :albums do
     resources :reviews, except: [:index]
   end
