@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     before_action :must_login, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
     def index
-        @albums = Album.with_recent_reviews
+        @albums = Album.with_recent_reviews #scope
     end
 
     def show
