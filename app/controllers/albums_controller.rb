@@ -22,8 +22,6 @@ class AlbumsController < ApplicationController
     def create
         @album = current_user.albums.build(album_params)
         @album.reviews.each { |r| r.user ||= current_user }
-        # I'm using ||= so i can use the same code on update without changing reviews that already have a user
-        #each album review is either assigned to the user that made it or the current user
         if @album.save
             redirect_to album_path(@album)
         else
@@ -37,6 +35,8 @@ class AlbumsController < ApplicationController
 
     def update
         @album.user_id = current_user.id
+        @album.avatar.purge # or album.avatar.purge_later
+        @album.avatar.attach(params[:avatar])
         if @album.update(album_params)
             redirect_to album_path(@album), notice: "Your album has been updated."
         else
@@ -57,7 +57,7 @@ class AlbumsController < ApplicationController
     end
 
     def set_album
-        @album = Album.exists?(params[:id]) ? Album.find(params[:id]) : nil #if album exists, find it, else it is nil
+        @album = Album.exists?(params[:id]) ? Album.find(params[:id]) : nil
         redirect_to not_found_path if @album.nil? 
         #render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found if @album.nil? #conditional still works at end 
     end

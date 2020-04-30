@@ -1,16 +1,7 @@
-<h6><strong>
-Showing "<%= @review.title %>" for 
-<%= @album.artist %> -
-<%= @album.title %>
-</strong></h6>
-<br>
-<% if @album.avatar.attached? %>
-    <image src="<%=(url_for(@album.avatar))%>%" style="width:350px;height:350px;">
-<% end %>
-<br>
-<br>
-<%= link_to "Edit Album", edit_album_path(@album), class: "waves-effect waves-light btn" %>
-<%= link_to 'Delete Album', album_path(@album), method: :delete, class: "waves-effect waves-light btn" %>
+<h5>
+Showing <strong>"<%= @review.title %>"</strong> for 
+</h5>
+<%= render '/albums/album' %>
 <br><br>
 <hr>
 

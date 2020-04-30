@@ -5,6 +5,8 @@ class UsersController < ApplicationController
     #before_action :find_album, only: [:show, :create, :edit, :update, :destroy]
     before_action :must_login, only: [:index, :show, :edit, :update, :destroy]
 
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
     def index
         @users = User.all
     end
@@ -45,9 +47,9 @@ class UsersController < ApplicationController
 
     private
 
-   # def set_review
-   #     @review = Review.find(params[:id])
-   # end
+    def record_not_found
+        redirect_to not_found_path
+    end
 
     def set_user
         @user = User.find(params[:id])

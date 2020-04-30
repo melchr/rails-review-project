@@ -2,18 +2,7 @@
 <small><%= link_to "Back to previous page", :back %></small>
 <div class="row">
 <div class="col s6">
-<h5><strong>
-<%= @album.artist %> -
-<%= @album.title %>
-</strong></h5>
-<br>
-<% if @album.avatar.attached? %>
-    <image src="<%=(url_for(@album.avatar))%>%" style="width:350px;height:350px;">
-<% end %>
-<br>
-<br>
-<%= link_to "Edit Album", edit_album_path(@album), class: "waves-effect waves-light btn" %>
-<%= link_to 'Delete Album', album_path(@album), method: :delete, class: "waves-effect waves-light btn" %>
+<%= render 'album'%>
 <br><br>
 <hr>
 <h5>Reviews for this album:</h5>

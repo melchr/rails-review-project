@@ -17,12 +17,11 @@ class SessionsController < ApplicationController
                 flash[:alert] = "Please include your Email & Password."
                 redirect_to signin_path
         end
-
-            def omniauth
-                @user = User.from_omniauth(request.env["omniauth.auth"])
-                session[:user_id] = @user.id
-                redirect_to root_path
-            end
+    end
+    def omniauth
+        @user = User.from_omniauth(request.env["omniauth.auth"])
+        session[:user_id] = @user.id
+        redirect_to root_path
     end
     def destroy
         session.clear

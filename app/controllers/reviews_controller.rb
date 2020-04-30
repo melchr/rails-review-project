@@ -4,6 +4,8 @@ class ReviewsController < ApplicationController
     before_action :find_album, only: [:show, :create, :edit, :update, :destroy]
     before_action :must_login, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
     def index
         @albums = Album.with_recent_reviews #scope
     end
@@ -33,6 +35,12 @@ class ReviewsController < ApplicationController
     end
     
     def edit
+        if current_user.id == @review.user_id
+            @album.reviews.find(params[:id])
+            redirect_to album_path(params[:album_id])
+          else
+             redirect_to album_path(@album)
+        end
     end
 
     def update
@@ -54,6 +62,10 @@ class ReviewsController < ApplicationController
       end
 
     private
+
+    def record_not_found
+        redirect_to not_found_path
+    end
 
     def set_review
         @review = Review.find(params[:id])
